@@ -1,10 +1,12 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Clock, Lock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Lock, BookOpen, CheckCircle, HelpCircle } from "lucide-react";
 import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
 import { Button } from "../components/ui/Button";
+import { Quiz } from "../components/ui/Quiz";
 import { getCourseBySlug, getLessonById } from "../data/courses";
+import { getLessonContent } from "../data/lessonContent";
 
 export function LessonPage() {
   const { courseSlug, lessonId } = useParams<{
@@ -14,6 +16,7 @@ export function LessonPage() {
 
   const course = courseSlug ? getCourseBySlug(courseSlug) : undefined;
   const lesson = course && lessonId ? getLessonById(course, parseInt(lessonId)) : undefined;
+  const content = courseSlug && lessonId ? getLessonContent(courseSlug, parseInt(lessonId)) : undefined;
 
   if (!course) {
     return <Navigate to="/courses" replace />;
@@ -201,6 +204,104 @@ export function LessonPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Lesson Content */}
+        {content && (
+          <section className="py-12 bg-cream">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Content Header */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-3 mb-8"
+              >
+                <div className="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-rose-gold" />
+                </div>
+                <h2 className="text-2xl font-serif font-bold text-charcoal">
+                  Lesson Notes
+                </h2>
+              </motion.div>
+
+              {/* Content Sections */}
+              <div className="space-y-8 mb-12">
+                {content.sections.map((section, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white rounded-2xl p-6 md:p-8 shadow-sm"
+                  >
+                    <h3 className="text-xl font-semibold text-charcoal mb-4">
+                      {section.title}
+                    </h3>
+                    <div className="prose prose-charcoal max-w-none">
+                      {section.content.split("\n\n").map((paragraph, pIndex) => (
+                        <p
+                          key={pIndex}
+                          className="text-charcoal/80 leading-relaxed mb-4 last:mb-0"
+                          dangerouslySetInnerHTML={{
+                            __html: paragraph
+                              .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                              .replace(/\n/g, "<br />"),
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Key Takeaways */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="bg-blush rounded-2xl p-6 md:p-8 mb-12"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-rose-gold" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-charcoal">
+                    Key Takeaways
+                  </h3>
+                </div>
+                <ul className="space-y-3">
+                  {content.keyTakeaways.map((takeaway, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-rose-gold mt-0.5 flex-shrink-0" />
+                      <span className="text-charcoal/80">{takeaway}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Quiz Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-rose-gold/20 flex items-center justify-center">
+                    <HelpCircle className="w-5 h-5 text-rose-gold" />
+                  </div>
+                  <h2 className="text-2xl font-serif font-bold text-charcoal">
+                    Test Your Knowledge
+                  </h2>
+                </div>
+                <Quiz questions={content.quiz} />
+              </motion.div>
+            </div>
+          </section>
+        )}
 
         {/* Course Lessons Sidebar */}
         <section className="py-12 bg-cream border-t border-charcoal/10">
