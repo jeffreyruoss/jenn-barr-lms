@@ -11,7 +11,7 @@ export function LessonPage() {
     courseSlug: string;
     lessonId: string;
   }>();
-  
+
   const course = courseSlug ? getCourseBySlug(courseSlug) : undefined;
   const lesson = course && lessonId ? getLessonById(course, parseInt(lessonId)) : undefined;
 
