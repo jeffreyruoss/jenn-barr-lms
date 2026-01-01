@@ -3,6 +3,13 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/Button";
 
 export function Hero() {
+  const scrollToCourses = () => {
+    const element = document.getElementById("courses");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20">
       {/* Background Image */}
@@ -54,11 +61,11 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" onClick={scrollToCourses}>
               Start Learning
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={scrollToCourses}>
               Explore Courses
             </Button>
           </motion.div>
