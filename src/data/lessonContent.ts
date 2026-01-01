@@ -34,7 +34,7 @@ Understanding the color wheel allows you to predict how colors will interact, cr
 
 **Secondary Colors** are created by mixing two primary colors:
 - Red + Yellow = Orange
-- Yellow + Blue = Green  
+- Yellow + Blue = Green
 - Blue + Red = Violet
 
 **Tertiary Colors** are created by mixing a primary color with an adjacent secondary color, giving us colors like red-orange, yellow-green, and blue-violet.`,
@@ -136,7 +136,7 @@ When undertones aren't properly considered, the result can be unflattering at be
         content: `Natural hair contains varying amounts of melanin that create underlying pigments. When you lighten hair, you're exposing these pigments:
 
 **Level 1-4 (Dark)**: Red underlying pigment
-**Level 5-6 (Medium)**: Red-Orange underlying pigment  
+**Level 5-6 (Medium)**: Red-Orange underlying pigment
 **Level 7 (Medium Blonde)**: Orange underlying pigment
 **Level 8 (Light Blonde)**: Yellow-Orange underlying pigment
 **Level 9-10 (Very Light)**: Yellow to Pale Yellow underlying pigment
