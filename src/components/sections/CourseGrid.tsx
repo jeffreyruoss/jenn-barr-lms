@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { courses } from "../../data/courses";
 import { CourseCard } from "../ui/CourseCard";
 
 export function CourseGrid() {
+  // Only show first 3 courses on landing page
+  const featuredCourses = courses.slice(0, 3);
+
   return (
     <section id="courses" className="py-20 md:py-28 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +30,7 @@ export function CourseGrid() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, index) => (
+          {featuredCourses.map((course, index) => (
             <CourseCard key={course.id} course={course} index={index} />
           ))}
         </div>
@@ -38,12 +42,12 @@ export function CourseGrid() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <a
-            href="#"
+          <Link
+            to="/courses"
             className="text-rose-gold font-medium hover:underline inline-flex items-center gap-2"
           >
-            View All Courses →
-          </a>
+            View All {courses.length} Courses →
+          </Link>
         </motion.div>
       </div>
     </section>

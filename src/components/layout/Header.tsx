@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/Button";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <motion.header
@@ -16,35 +19,55 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="font-serif text-xl md:text-2xl font-semibold text-charcoal">
               Jenn Barr <span className="text-rose-gold">Beauty</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#courses"
+            <Link
+              to="/courses"
               className="text-charcoal/80 hover:text-rose-gold transition-colors"
             >
               Courses
-            </a>
-            <a
-              href="#community"
-              className="text-charcoal/80 hover:text-rose-gold transition-colors"
-            >
-              Community
-            </a>
-            <a
-              href="#about"
-              className="text-charcoal/80 hover:text-rose-gold transition-colors"
-            >
-              About
-            </a>
-            <Button variant="primary" size="sm">
-              Start Learning
-            </Button>
+            </Link>
+            {isHome ? (
+              <a
+                href="#community"
+                className="text-charcoal/80 hover:text-rose-gold transition-colors"
+              >
+                Community
+              </a>
+            ) : (
+              <Link
+                to="/#community"
+                className="text-charcoal/80 hover:text-rose-gold transition-colors"
+              >
+                Community
+              </Link>
+            )}
+            {isHome ? (
+              <a
+                href="#about"
+                className="text-charcoal/80 hover:text-rose-gold transition-colors"
+              >
+                About
+              </a>
+            ) : (
+              <Link
+                to="/#about"
+                className="text-charcoal/80 hover:text-rose-gold transition-colors"
+              >
+                About
+              </Link>
+            )}
+            <Link to="/courses">
+              <Button variant="primary" size="sm">
+                Start Learning
+              </Button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -66,30 +89,32 @@ export function Header() {
             className="md:hidden py-4 border-t border-blush"
           >
             <div className="flex flex-col gap-4">
-              <a
-                href="#courses"
+              <Link
+                to="/courses"
                 className="text-charcoal/80 hover:text-rose-gold transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Courses
-              </a>
+              </Link>
               <a
-                href="#community"
+                href={isHome ? "#community" : "/#community"}
                 className="text-charcoal/80 hover:text-rose-gold transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Community
               </a>
               <a
-                href="#about"
+                href={isHome ? "#about" : "/#about"}
                 className="text-charcoal/80 hover:text-rose-gold transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </a>
-              <Button variant="primary" size="md" className="mt-2">
-                Start Learning
-              </Button>
+              <Link to="/courses" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="primary" size="md" className="mt-2">
+                  Start Learning
+                </Button>
+              </Link>
             </div>
           </motion.nav>
         )}

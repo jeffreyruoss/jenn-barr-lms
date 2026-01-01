@@ -1,39 +1,272 @@
-export interface Course {
+export interface Lesson {
   id: number;
   title: string;
+  duration: string;
+  isAvailable: boolean;
+  vimeoId?: string;
+}
+
+export interface Course {
+  id: number;
+  slug: string;
+  title: string;
   description: string;
+  longDescription: string;
   price: number;
   image: string;
   duration: string;
-  lessons: number;
+  lessons: Lesson[];
+  instructor: string;
+  level: "Beginner" | "Intermediate" | "Advanced";
 }
 
 export const courses: Course[] = [
   {
     id: 1,
+    slug: "advanced-color-theory",
     title: "Advanced Color Theory",
     description: "Master the science behind perfect color matching and formulation techniques.",
+    longDescription: "Dive deep into the world of color with this comprehensive course. Learn the science of color formulation, understand undertones, master color correction, and develop an intuitive eye for creating stunning, personalized color results for every client.",
     price: 299,
     image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=600&fit=crop",
     duration: "6 weeks",
-    lessons: 24,
+    instructor: "Jenn Barr",
+    level: "Advanced",
+    lessons: [
+      { id: 1, title: "Understanding the Color Wheel", duration: "18:30", isAvailable: true, vimeoId: "76979871" },
+      { id: 2, title: "Undertones & Skin Analysis", duration: "22:15", isAvailable: true, vimeoId: "76979871" },
+      { id: 3, title: "Color Formulation Basics", duration: "25:00", isAvailable: true, vimeoId: "76979871" },
+      { id: 4, title: "Corrective Color Techniques", duration: "30:45", isAvailable: false },
+      { id: 5, title: "Balayage Color Placement", duration: "28:20", isAvailable: false },
+      { id: 6, title: "Dimensional Color Blending", duration: "24:10", isAvailable: false },
+      { id: 7, title: "Gray Coverage Mastery", duration: "20:00", isAvailable: false },
+      { id: 8, title: "Vivid & Fashion Colors", duration: "32:15", isAvailable: false },
+      { id: 9, title: "Color Correction Case Studies", duration: "35:00", isAvailable: false },
+      { id: 10, title: "Building Your Color Portfolio", duration: "18:45", isAvailable: false },
+    ],
   },
   {
     id: 2,
+    slug: "extensions-masterclass",
     title: "Extensions Masterclass",
     description: "From basics to advanced installation techniques for flawless extensions.",
+    longDescription: "Transform your extension services with this complete masterclass. Learn multiple installation methods, proper consultation techniques, maintenance protocols, and how to build a thriving extensions business.",
     price: 399,
     image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=600&fit=crop",
     duration: "8 weeks",
-    lessons: 32,
+    instructor: "Jenn Barr",
+    level: "Intermediate",
+    lessons: [
+      { id: 1, title: "Extension Types & Selection", duration: "20:00", isAvailable: false },
+      { id: 2, title: "Client Consultation Process", duration: "18:30", isAvailable: false },
+      { id: 3, title: "Tape-In Installation", duration: "35:00", isAvailable: false },
+      { id: 4, title: "Hand-Tied Weft Basics", duration: "40:15", isAvailable: false },
+      { id: 5, title: "Beaded Row Techniques", duration: "38:20", isAvailable: false },
+      { id: 6, title: "Blending & Cutting Extensions", duration: "25:00", isAvailable: false },
+      { id: 7, title: "Color Matching Extensions", duration: "22:45", isAvailable: false },
+      { id: 8, title: "Maintenance & Move-Ups", duration: "28:10", isAvailable: false },
+      { id: 9, title: "Troubleshooting Common Issues", duration: "24:30", isAvailable: false },
+      { id: 10, title: "Pricing Your Extension Services", duration: "20:00", isAvailable: false },
+    ],
   },
   {
     id: 3,
+    slug: "business-of-beauty",
     title: "Business of Beauty",
     description: "Build and scale your salon empire with proven business strategies.",
+    longDescription: "Turn your passion into profit with essential business skills. Learn pricing strategies, marketing fundamentals, client retention, team building, and financial management specifically designed for beauty professionals.",
     price: 249,
     image: "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&h=600&fit=crop",
     duration: "4 weeks",
-    lessons: 16,
+    instructor: "Jenn Barr",
+    level: "Beginner",
+    lessons: [
+      { id: 1, title: "Defining Your Brand Identity", duration: "22:00", isAvailable: false },
+      { id: 2, title: "Pricing for Profit", duration: "28:15", isAvailable: false },
+      { id: 3, title: "Social Media Marketing 101", duration: "25:30", isAvailable: false },
+      { id: 4, title: "Client Retention Strategies", duration: "20:00", isAvailable: false },
+      { id: 5, title: "Building Your Online Presence", duration: "24:45", isAvailable: false },
+      { id: 6, title: "Financial Basics for Stylists", duration: "30:00", isAvailable: false },
+      { id: 7, title: "Hiring Your First Assistant", duration: "18:20", isAvailable: false },
+      { id: 8, title: "Creating Client Experiences", duration: "22:10", isAvailable: false },
+      { id: 9, title: "Managing Your Schedule", duration: "16:30", isAvailable: false },
+      { id: 10, title: "Scaling Beyond the Chair", duration: "35:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 4,
+    slug: "bridal-styling-essentials",
+    title: "Bridal Styling Essentials",
+    description: "Create unforgettable bridal looks from consultation to wedding day.",
+    longDescription: "Become the go-to bridal stylist in your area. Master romantic updos, flowing styles, veil placement, and the art of the bridal consultation. Learn how to handle wedding day logistics and build a bridal portfolio that books.",
+    price: 349,
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop",
+    duration: "5 weeks",
+    instructor: "Jenn Barr",
+    level: "Intermediate",
+    lessons: [
+      { id: 1, title: "The Bridal Consultation", duration: "24:00", isAvailable: false },
+      { id: 2, title: "Classic Bridal Updos", duration: "32:15", isAvailable: false },
+      { id: 3, title: "Romantic Waves & Curls", duration: "28:30", isAvailable: false },
+      { id: 4, title: "Braided Bridal Styles", duration: "30:00", isAvailable: false },
+      { id: 5, title: "Veil & Accessory Placement", duration: "18:45", isAvailable: false },
+      { id: 6, title: "Half-Up Bridal Looks", duration: "26:20", isAvailable: false },
+      { id: 7, title: "Wedding Day Timeline", duration: "20:00", isAvailable: false },
+      { id: 8, title: "Working with Bridesmaids", duration: "22:10", isAvailable: false },
+      { id: 9, title: "Trial Run Best Practices", duration: "25:30", isAvailable: false },
+      { id: 10, title: "Building Your Bridal Business", duration: "28:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 5,
+    slug: "precision-cutting-techniques",
+    title: "Precision Cutting Techniques",
+    description: "Elevate your cutting skills with modern precision techniques.",
+    longDescription: "Master the fundamentals of precision cutting and learn advanced techniques used by top stylists. From classic bobs to modern textured cuts, develop the skills to create any style with confidence and consistency.",
+    price: 329,
+    image: "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=800&h=600&fit=crop",
+    duration: "6 weeks",
+    instructor: "Jenn Barr",
+    level: "Intermediate",
+    lessons: [
+      { id: 1, title: "Sectioning Fundamentals", duration: "20:00", isAvailable: false },
+      { id: 2, title: "The Perfect Bob", duration: "35:15", isAvailable: false },
+      { id: 3, title: "Layering Techniques", duration: "32:30", isAvailable: false },
+      { id: 4, title: "Texturizing & Point Cutting", duration: "28:00", isAvailable: false },
+      { id: 5, title: "Face Framing Mastery", duration: "24:45", isAvailable: false },
+      { id: 6, title: "Modern Shag Techniques", duration: "30:20", isAvailable: false },
+      { id: 7, title: "Pixie Cut Precision", duration: "28:00", isAvailable: false },
+      { id: 8, title: "Long Layer Foundations", duration: "26:10", isAvailable: false },
+      { id: 9, title: "Razor Cutting Basics", duration: "22:30", isAvailable: false },
+      { id: 10, title: "Consultation to Completion", duration: "18:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 6,
+    slug: "blonde-specialist-certification",
+    title: "Blonde Specialist Certification",
+    description: "Become a certified blonde specialist with advanced lightening techniques.",
+    longDescription: "Master the art of blonde with this comprehensive certification program. Learn safe lightening practices, toning formulas, maintenance plans, and how to achieve every shade from warm honey to icy platinum.",
+    price: 449,
+    image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=600&fit=crop",
+    duration: "8 weeks",
+    instructor: "Jenn Barr",
+    level: "Advanced",
+    lessons: [
+      { id: 1, title: "Lightener Chemistry", duration: "25:00", isAvailable: false },
+      { id: 2, title: "Developer Selection Guide", duration: "20:15", isAvailable: false },
+      { id: 3, title: "Safe Lightening Practices", duration: "28:30", isAvailable: false },
+      { id: 4, title: "Foiling Placement Patterns", duration: "35:00", isAvailable: false },
+      { id: 5, title: "Babylights & Microlights", duration: "32:45", isAvailable: false },
+      { id: 6, title: "Toning & Glossing", duration: "24:20", isAvailable: false },
+      { id: 7, title: "Platinum & Ice Blondes", duration: "30:00", isAvailable: false },
+      { id: 8, title: "Warm & Golden Blondes", duration: "26:10", isAvailable: false },
+      { id: 9, title: "Damage Prevention & Repair", duration: "22:30", isAvailable: false },
+      { id: 10, title: "Blonde Maintenance Programs", duration: "20:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 7,
+    slug: "instagram-growth-for-stylists",
+    title: "Instagram Growth for Stylists",
+    description: "Build a stunning Instagram presence that attracts dream clients.",
+    longDescription: "Transform your Instagram into a client-attracting machine. Learn content creation, photography tips, hashtag strategies, Reels, Stories, and how to convert followers into booked appointments.",
+    price: 199,
+    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=600&fit=crop",
+    duration: "3 weeks",
+    instructor: "Jenn Barr",
+    level: "Beginner",
+    lessons: [
+      { id: 1, title: "Optimizing Your Profile", duration: "18:00", isAvailable: false },
+      { id: 2, title: "Content Planning & Batching", duration: "22:15", isAvailable: false },
+      { id: 3, title: "Hair Photography Basics", duration: "25:30", isAvailable: false },
+      { id: 4, title: "Editing Apps & Presets", duration: "20:00", isAvailable: false },
+      { id: 5, title: "Hashtag Strategy", duration: "16:45", isAvailable: false },
+      { id: 6, title: "Creating Engaging Reels", duration: "28:20", isAvailable: false },
+      { id: 7, title: "Stories That Convert", duration: "22:00", isAvailable: false },
+      { id: 8, title: "Engagement & Community", duration: "18:10", isAvailable: false },
+      { id: 9, title: "Collaborations & Features", duration: "20:30", isAvailable: false },
+      { id: 10, title: "Analytics & Growth Tracking", duration: "15:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 8,
+    slug: "textured-hair-mastery",
+    title: "Textured Hair Mastery",
+    description: "Confidently work with curly, coily, and wavy hair textures.",
+    longDescription: "Expand your skills to serve all hair textures with confidence. Learn curl pattern analysis, proper cutting techniques for textured hair, styling methods, and product recommendations for curly, coily, and wavy clients.",
+    price: 379,
+    image: "https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=800&h=600&fit=crop",
+    duration: "6 weeks",
+    instructor: "Jenn Barr",
+    level: "Intermediate",
+    lessons: [
+      { id: 1, title: "Understanding Curl Patterns", duration: "24:00", isAvailable: false },
+      { id: 2, title: "Consultation for Textured Hair", duration: "20:15", isAvailable: false },
+      { id: 3, title: "Dry Cutting Techniques", duration: "32:30", isAvailable: false },
+      { id: 4, title: "Wash Day Protocols", duration: "28:00", isAvailable: false },
+      { id: 5, title: "Styling Curly Hair", duration: "30:45", isAvailable: false },
+      { id: 6, title: "Product Knowledge Deep Dive", duration: "22:20", isAvailable: false },
+      { id: 7, title: "Protective Styling Basics", duration: "26:00", isAvailable: false },
+      { id: 8, title: "Color on Textured Hair", duration: "28:10", isAvailable: false },
+      { id: 9, title: "Common Mistakes to Avoid", duration: "18:30", isAvailable: false },
+      { id: 10, title: "Building Textured Clientele", duration: "20:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 9,
+    slug: "salon-suite-success",
+    title: "Salon Suite Success",
+    description: "Everything you need to launch and run a profitable salon suite.",
+    longDescription: "Ready to go independent? This course covers everything from choosing your suite to building systems that run your business smoothly. Learn the ins and outs of salon suite ownership from someone who's done it.",
+    price: 279,
+    image: "https://images.unsplash.com/photo-1633681122886-333f05cfa2cf?w=800&h=600&fit=crop",
+    duration: "4 weeks",
+    instructor: "Jenn Barr",
+    level: "Beginner",
+    lessons: [
+      { id: 1, title: "Is Suite Life Right for You?", duration: "22:00", isAvailable: false },
+      { id: 2, title: "Choosing Your Location", duration: "18:15", isAvailable: false },
+      { id: 3, title: "Suite Setup & Design", duration: "25:30", isAvailable: false },
+      { id: 4, title: "Legal & Insurance Basics", duration: "20:00", isAvailable: false },
+      { id: 5, title: "Booking & Payment Systems", duration: "24:45", isAvailable: false },
+      { id: 6, title: "Stocking Your Suite", duration: "18:20", isAvailable: false },
+      { id: 7, title: "Client Experience Design", duration: "22:00", isAvailable: false },
+      { id: 8, title: "Marketing Your New Space", duration: "26:10", isAvailable: false },
+      { id: 9, title: "Time Management Solo", duration: "16:30", isAvailable: false },
+      { id: 10, title: "Growing Beyond Capacity", duration: "24:00", isAvailable: false },
+    ],
+  },
+  {
+    id: 10,
+    slug: "consultation-mastery",
+    title: "Consultation Mastery",
+    description: "Transform consultations into loyal, high-paying clients.",
+    longDescription: "The consultation is where great services begin. Learn to truly understand your clients, set proper expectations, handle difficult requests gracefully, and create experiences that turn first-time visitors into forever clients.",
+    price: 179,
+    image: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=600&fit=crop",
+    duration: "3 weeks",
+    instructor: "Jenn Barr",
+    level: "Beginner",
+    lessons: [
+      { id: 1, title: "First Impressions Matter", duration: "18:00", isAvailable: false },
+      { id: 2, title: "Asking the Right Questions", duration: "22:15", isAvailable: false },
+      { id: 3, title: "Reading Client Cues", duration: "20:30", isAvailable: false },
+      { id: 4, title: "Managing Expectations", duration: "24:00", isAvailable: false },
+      { id: 5, title: "The Pinterest Problem", duration: "18:45", isAvailable: false },
+      { id: 6, title: "Saying No Gracefully", duration: "16:20", isAvailable: false },
+      { id: 7, title: "Upselling Without Pressure", duration: "20:00", isAvailable: false },
+      { id: 8, title: "Handling Difficult Clients", duration: "25:10", isAvailable: false },
+      { id: 9, title: "Post-Service Follow Up", duration: "15:30", isAvailable: false },
+      { id: 10, title: "Building Client Loyalty", duration: "22:00", isAvailable: false },
+    ],
   },
 ];
+
+export function getCourseBySlug(slug: string): Course | undefined {
+  return courses.find((course) => course.slug === slug);
+}
+
+export function getLessonById(course: Course, lessonId: number): Lesson | undefined {
+  return course.lessons.find((lesson) => lesson.id === lessonId);
+}
